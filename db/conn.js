@@ -1,17 +1,16 @@
-const mongo = require('mongodb');
-const mongoClient = mongo.MongoClient;
+const mongoose = require('mongoose');
 
-const connectionString = process.env.MONGO_URI;
-const client = new MongoClient(connectionString);
+const conn = () => {
+  try {
+    mongoose.connect(process.env.MONGO_URI, {});
+    mongoose.connection.once('open', () => {
+      console.log('connected to Mongodb');
+    });
+  } catch (error) {
+    console.error(
+      `Something went wrong with connect to database ${error.message}`
+    );
+  }
+};
 
-let conn;
-
-try {
-  conn = await client.connect();
-} catch (error) {
-  console.error(error);
-}
-
-const db = conn.db('sample_training');
-
-module.exports = db;
+module.exports = conn;
