@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT;
 const conn = require('./db/conn');
 const petRoutes = require('./routes/pets');
-
+const Pet = require('./models/pet');
 conn();
 
 // VIEW ENGINE
@@ -17,7 +17,7 @@ app.use('/pets', petRoutes);
 
 // ROUTES
 app.get('/', (req, res) => {
-  res.send('Home route');
+  res.send('Welcome to the Pet Adoption');
 });
 
 app.listen(PORT, () => {
