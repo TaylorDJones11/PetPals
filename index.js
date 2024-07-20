@@ -14,18 +14,19 @@ app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
 // MIDDLEWARE
-app.use('/pets', petRoutes);
+app.use(express.json());
+app.use('/api/adoptionpets', petRoutes);
 
 // ROUTES
 app.get('/', (req, res) => {
   res.send('Welcome to the Pet Adoption');
 });
 
-app.get('/api/adoptionpets', async (req, res) => {
+app.get('/seed', async (req, res) => {
   try {
     await Pet.deleteMany({});
     console.log('Cleared Pet collection.');
-    await Pet.create(...adoptablePets);
+    await Pet.create(adoptablePets);
 
     res.json(adoptablePets);
   } catch (error) {
