@@ -42,7 +42,23 @@ router.post('/', async (req, res) => {
 });
 
 // update - PUT
-
+router.put('/:id', async (req, res) => {
+  try {
+    const updatePet = await Pet.findByIdAndUpdate(req.params.id, req.body);
+    res.json(updatePet);
+  } catch (error) {
+    console.log(`Something went wrong with PUT method ${error}`);
+  }
+});
 // destroy - DELETE
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const deletePet = await Pet.findByIdAndDelete(req.params.id);
+    res.json(deletePet);
+  } catch (error) {
+    console.log(`Something went wrong with DELETE method ${error}`);
+  }
+});
 
 module.exports = router;
