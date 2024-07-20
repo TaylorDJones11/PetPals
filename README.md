@@ -1,10 +1,12 @@
 # Pet Adoption Management System 🐱🐶
 
+![PetPals](https://github.com/user-attachments/assets/430a1c9c-2644-4315-87d1-5f967c6247ca)
+
+
 ## Objectives
 
 - Create a server application with Node, Express, and MongoDB.
 - Create a CRUD API using Express and MongoDB.
-- Use MongoDB indexing to make efficient queries.
 - Create MongoDB validation rules.
 - Use MongoDB validation to ensure data consistency.
 
