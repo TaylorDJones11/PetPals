@@ -37,7 +37,8 @@ router.post('/', async (req, res) => {
     const newPet = await Pet.create(req.body);
     res.json(newPet);
   } catch (error) {
-    console.log(`Something went wrong with the POST method: ${error.message}`);
+    res.status(400).json({ msg: 'Validation Error: ' + error.message });
+    console.log('Validation error:', error.message);
   }
 });
 
@@ -47,7 +48,8 @@ router.put('/:id', async (req, res) => {
     const updatePet = await Pet.findByIdAndUpdate(req.params.id, req.body);
     res.json(updatePet);
   } catch (error) {
-    console.log(`Something went wrong with PUT method ${error}`);
+    res.status(400).json({ msg: 'Invalid data provided or pet not found' });
+    console.log(error);
   }
 });
 // destroy - DELETE
@@ -57,7 +59,8 @@ router.delete('/:id', async (req, res) => {
     const deletePet = await Pet.findByIdAndDelete(req.params.id);
     res.json(deletePet);
   } catch (error) {
-    console.log(`Something went wrong with DELETE method ${error}`);
+    console.log(`Something went wrong with DELETE method ${error.message}`);
+    res.status(500).json({ msg: 'Server error: Unable to delete pet' });
   }
 });
 
