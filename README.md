@@ -34,5 +34,5 @@ This project is a Pet Adoption Management System built with Node.js and Express.
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/pet-adoption-management.git
-cd pet-adoption-management
+git clone https://github.com/yourusername/Petpals.git
+cd Petpals
