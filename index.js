@@ -21,13 +21,13 @@ app.get('/', (req, res) => {
   res.send('Welcome to the Pet Adoption');
 });
 
-app.get('/adoptionpets', async (req, res) => {
+app.get('/api/adoptionpets', async (req, res) => {
   try {
     await Pet.deleteMany({});
     console.log('Cleared Pet collection.');
-    const insertedPets = await Pet.insertMany(adoptablePets);
-    console.log('Inserted pets:', insertedPets);
-    res.json(insertedPets);
+    await Pet.create(...adoptablePets);
+
+    res.json(adoptablePets);
   } catch (error) {
     console.error('Error loading seed data:', error);
     res
